@@ -12,7 +12,15 @@ namespace HellpSpa.Controllers
         // Get: Hello
         public string GetHello()
         {
-            return "Hello";
+            return "Hello(" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + ")";
         }
+
+        // Get: HelloWithName
+        [Route("api/Hello/HelloWithName/{name}")]
+        public string GetHelloWithName(string name)
+        {
+            return "Hello " + name + "!";
+        }
+
     }
 }
