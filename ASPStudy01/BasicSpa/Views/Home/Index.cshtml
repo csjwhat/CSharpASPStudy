@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASIC SPA SAMPLE</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script src="~/Scripts/app.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#home" class="navbar-brand openHome">BASIC SPA SAMPLE</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#products" class="openProducts">Products</a></li>
+                    <li><a href="#newItem" class="openNewItem">New Item</a></li>
+                    <li><a href="#about" class="openAbout">About</a></li>
+                    <li><a href="#add" class="openAdd">Add</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        <div id="homePage" class="spaPageContent">
+            <div class="jumbotron">
+                <h1>HOME</h1>
+                <p class="lead">これは ASP.NET SPA の実装方法を理解するためのサンプルです。このサンプルは単一のページで構成されています。ナビゲーションをクリックすると画面遷移なしに表示を更新します。</p>
+                <p><a href="#products" class="btn btn-primary btn-lg openProducts">Start »</a></p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Products</h2>
+                    <p>アイテムを一覧・詳細表示する画面のサンプルです。</p>
+                    <p><a href="#products" class="btn btn-default openProducts">Open »</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>New Item</h2>
+                    <p>新しいアイテムを登録する画面のサンプルです。</p>
+                    <p><a href="#newItem" class="btn btn-default openNewItem">Open »</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>About</h2>
+                    <p>アプリとAPIのバージョンを表示します。</p>
+                    <p><a href="#about" class="btn btn-default openAbout">Open »</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Add</h2>
+                    <p>お試し機能追加してみます。</p>
+                    <p><a href="#add" class="btn btn-default openAdd">OpenAdd »</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>TextArea</h2>
+                    <p id="testMessage">ココのメッセージはAddボタンで変化します。</p>
+                    <select id="select1">
+                        <option value="Value1">Value1表示</option>
+                        <option value="Value2">Value2表示</option>
+                        <option value="Value3">Value3表示</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="productsPage" class="spaPageContent">
+            <h2>Products</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <table id="products">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                @*<th>Description</th>*@
+                                <th>Publisher</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tfoot></tfoot>
+                        <tbody data-bind='foreach: lines'>
+                            <tr data-bind='click: Clicked'>
+                                <td class='nowrap' data-bind='text:Title'></td>
+                                @*<td data-bind='text:Description'></td>*@
+                                <td class='nowrap' data-bind='text:Publisher'></td>
+                                <td class='nowrap' data-bind='text:Price'></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-4">
+                    <div id="productItem">
+                        <p>Title : <span data-bind='text:Title' /></p>
+                        <p>Description : <span data-bind='text:Description' /></p>
+                        <p>Publisher : <span data-bind='text:Publisher' /></p>
+                        <p>Price : <span data-bind='text:Price' /></p>
+                        <p>
+                            <a target="_blank" data-bind='attr: {href:DownloadUrl}, visible:DownloadUrl' \">Download</a>
+                            <a target="_blank" data-bind='attr: {href:ProductUrl}, visible:ProductUrl' \">Open Site</a>
+                            <a target="_blank" data-bind='attr: {href:PublisherUrl}, visible:PublisherUrl' \">Publisher</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="newItemPage" class="spaPageContent">
+            <h2>NewItem</h2>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div id="newItem">
+                        <input type='hidden' data-bind='value:Id' />
+                        <p>Title : <input type='text' data-bind='value:Title' /></p>
+                        <p>ProductUrl : <input type='text' data-bind='value:ProductUrl' /></p>
+                        <p>DownloadUrl : <input type='text' data-bind='value:DownloadUrl' /></p>
+                        <p>Description : <input type='text' data-bind='value:Description' /></p>
+                        <p>Publisher : <input type='text' data-bind='value:Publisher' /></p>
+                        <p>PublisherUrl : <input type='text' data-bind='value:PublisherUrl' /></p>
+                        <p>Price : <input type='text' data-bind='value:Price' /></p>
+                        <p><input class='saveButton' type='button' value='Save' /></p>
+                    </div>
+                    <div id="saveItemMessage">
+                        <div data-bind="visible:savedTitle"><span data-bind="text:savedTitle"></span>を保存しました。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="aboutPage" class="spaPageContent">
+            <h2>About</h2>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div id="about">
+                        <div>Title :  <span data-bind="text:Title"></span></div>
+                        <div>Version :  <span data-bind="text:Version"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year Surviveplus.net All Rights Reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
+
+

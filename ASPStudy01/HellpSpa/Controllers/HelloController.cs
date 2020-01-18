@@ -12,6 +12,7 @@ namespace HellpSpa.Controllers
         // Get: Hello
         public string GetHello()
         {
+            // throw new InvalidOperationException("このWebAPIは使えなくなりました");
             return "Hello(" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + ")";
         }
 
@@ -19,7 +20,14 @@ namespace HellpSpa.Controllers
         [Route("api/Hello/HelloWithName/{name}")]
         public string GetHelloWithName(string name)
         {
+            // throw new InvalidOperationException("このWebAPIは使えなくなりました");
             return "Hello " + name + "!";
+        }
+
+        [Route("api/Hello/IsEnabled/{clientVersion}")]
+        public bool GetIsEnabled(int clientVersion)
+        {
+            return (clientVersion >= 1);
         }
 
     }

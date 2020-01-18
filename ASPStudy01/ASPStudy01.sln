@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPStudy01", "ASPStudy01\AS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HellpSpa", "HellpSpa\HellpSpa.csproj", "{439CB3A3-63A3-444B-90B5-9CE7C366F657}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BasicSpa.database", "BasicSpa.database\BasicSpa.database.sqlproj", "{4A87567F-BCB7-481F-A55C-E56C0468203F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicSpa", "BasicSpa\BasicSpa.csproj", "{4E51DACA-5176-477A-A89D-CF7546BF32A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,16 @@ Global
 		{439CB3A3-63A3-444B-90B5-9CE7C366F657}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{439CB3A3-63A3-444B-90B5-9CE7C366F657}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{439CB3A3-63A3-444B-90B5-9CE7C366F657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A87567F-BCB7-481F-A55C-E56C0468203F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A87567F-BCB7-481F-A55C-E56C0468203F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A87567F-BCB7-481F-A55C-E56C0468203F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4A87567F-BCB7-481F-A55C-E56C0468203F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A87567F-BCB7-481F-A55C-E56C0468203F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A87567F-BCB7-481F-A55C-E56C0468203F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4E51DACA-5176-477A-A89D-CF7546BF32A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E51DACA-5176-477A-A89D-CF7546BF32A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E51DACA-5176-477A-A89D-CF7546BF32A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E51DACA-5176-477A-A89D-CF7546BF32A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
