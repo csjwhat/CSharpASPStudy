@@ -29,6 +29,7 @@
                     <li><a href="#newItem" class="openNewItem">New Item</a></li>
                     <li><a href="#about" class="openAbout">About</a></li>
                     <li><a href="#add" class="openAdd">Add</a></li>
+                    <li><a href="#bind1" class="openBind1">Bind1</a></li>
                 </ul>
             </div>
         </div>
@@ -40,6 +41,7 @@
                 <h1>HOME</h1>
                 <p class="lead">これは ASP.NET SPA の実装方法を理解するためのサンプルです。このサンプルは単一のページで構成されています。ナビゲーションをクリックすると画面遷移なしに表示を更新します。</p>
                 <p><a href="#products" class="btn btn-primary btn-lg openProducts">Start »</a></p>
+                <span class="text-right">Timer:<span id="nowTimes"></span></span>
             </div>
 
             <div class="row">
@@ -64,6 +66,12 @@
                     <p><a href="#add" class="btn btn-default openAdd">OpenAdd »</a></p>
                 </div>
                 <div class="col-md-4">
+                    <h2>buttonEvent</h2>
+                    <p><button id="button1">ボタン１</button></p>
+                    <p><button id="button2">ボタン２</button></p>
+                    <p><button id="button3">ボタン３</button></p>
+                </div>
+                <div class="col-md-4">
                     <h2>TextArea</h2>
                     <p id="testMessage">ココのメッセージはAddボタンで変化します。</p>
                     <select id="select1">
@@ -71,8 +79,30 @@
                         <option value="Value2">Value2表示</option>
                         <option value="Value3">Value3表示</option>
                     </select>
+                    テキストの値取得のテスト<input id="impText" type="text" /><br />
+                    ラジオボタンのテスト<br />
+                    Value1 <input name="radio1" type="radio" value="Value1" /><br />
+                    Value2 <input name="radio1" type="radio" value="Value2" /><br />
+                    Value3 <input name="radio1" type="radio" value="Value3" /><br />
+
+                    チェックボックスのテスト<br /><input id="check1" type="checkbox" />
                 </div>
 
+                <div class="col-md-4">
+                    <h2>データバインドの確認</h2>
+                    <input id="text2" type="text" data-bind="textInput:Text2" /><br />
+                    <input id="check2" type="checkbox" data-bind="checked:Check2" /><br />
+                    Value1 <input name="radio2" type="radio" value="Value1" data-bind="checked:Radio2Selected" /><br />
+                    Value2 <input name="radio2" type="radio" value="Value2" data-bind="checked:Radio2Selected" /><br />
+                    Value3 <input name="radio2" type="radio" value="Value3" data-bind="checked:Radio2Selected" /><br />
+                    <select id="select2" data-bind="options:Select2Options, value:Select2Selected"></select>
+                    <div id="text2disp"></div>
+                </div>
+                <div class="col-md-4">
+                    <h2>Bind1</h2>
+                    <p>データバインドボタン。</p>
+                    <p><a href="#bind" class="btn btn-default openBind1">Bind »</a></p>
+                </div>
             </div>
         </div>
 
@@ -108,6 +138,7 @@
                         <p>Publisher : <span data-bind='text:Publisher' /></p>
                         <p>Price : <span data-bind='text:Price' /></p>
                         <p>
+                            // 以下 aタグを配置しているが、hrefプロパティを設定していない→attrの中で設定
                             <a target="_blank" data-bind='attr: {href:DownloadUrl}, visible:DownloadUrl' \">Download</a>
                             <a target="_blank" data-bind='attr: {href:ProductUrl}, visible:ProductUrl' \">Open Site</a>
                             <a target="_blank" data-bind='attr: {href:PublisherUrl}, visible:PublisherUrl' \">Publisher</a>
@@ -152,6 +183,20 @@
                 </div>
             </div>
         </div>
+
+        <div id="addPage" class="spaPageContent">
+            <h2>AddTestPage</h2>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div id="add">
+                        <span id="addPageMessageText">ここはIDのテスト</span><br />
+                        <span id="messageText">ここでfindのテストしたい</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <hr />
         <footer>
