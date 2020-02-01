@@ -7,6 +7,8 @@
     DownloadUrl: string = null;
     ProductUrl: string = null;
     PublisherUrl: string = null;
+
+    // ここでClickedプロパティを設定しておくのがポイント
     Clicked: KnockoutBindingHandler = null;
 }
 
@@ -17,14 +19,19 @@ enum optionValue {
     Value3
 }
 
-class Selet1OptionItem {
+class Select3OptionItem {
+    // Select3OptionItemは、ValueとTitleを持つ構造。
     public Value: string;
     public Title: string;
+
+    // OriginalValueは中の値。enum値（Value1～Value3）となる。
     public OriginalValue: optionValue;
+
     constructor(value: optionValue, title: string) {
-        this.Value = optionValue[value];
+        // コンストラクタでは、enumで渡された値をタイトル（日本語）を設定する。
+        this.Value = optionValue[value]; // → optionValueのプロパティをとるとStringになる？
         this.Title = title;
-        this.OriginalValue = value;
+        this.OriginalValue = value; // → valueはEnum値 optionValue.Value1か、optionValue.Value2,optionValue.Value3のいずれかがしかセットされない
     }
 }
 
@@ -37,31 +44,75 @@ class SampleModel {
     public Text2: KnockoutObservable<string> = ko.observable("sample");
     public Check2 = ko.observable(true);
 
-    public Radio2Selected = ko.observable("Value2");
     public Radio2(value?: optionValue): optionValue {
         if (value != undefined) {
             this.Radio2Selected(optionValue[value]);
         }
         return optionValue[this.Radio2Selected()];
     }
+    public Radio2Selected: KnockoutObservable<string> = ko.observable("Value2");
 
     public Select2Options = ko.observableArray(["Value1", "Value2", "Value3"]);
-    public Select2Selected = ko.observable("Value2");
     public Select2(value?: optionValue): optionValue {
         if (value != undefined) {
             // String型のenumへの変換
             this.Select2Selected(optionValue[value]);
         }
 
-        // KnockoutObservableオブジェクトと同名メソッドでテキストを取得できる。
+        // KnockoutObservableオブジェクトと同名メソッドでテキストを取得できる。enum値を返す
         return optionValue[this.Select2Selected()];
     }
+    // 本にはないが、初期値設定はこのタイミングで必須。
+    public Select2Selected: KnockoutObservable<string> = ko.observable("Value3");
 
     //public Radio2: optionValue = optionValue.Value1;
     //public Select2: optionValue = optionValue.Value3;
+    //public Select3Options = ko.observableArray
+    //    ([new Select3OptionItem(optionValue.Value1, "値1"), // enumと表示値で、Select3OptionItemを作る
+    //        new Select3OptionItem(optionValue.Value2, "値2"),
+    //        new Select3OptionItem(optionValue.Value3, "値3")]
+    //    );
 
+    public Select3OptionList: Select3OptionItem[]
+        = [new Select3OptionItem(optionValue.Value1, "値1"), 
+    new Select3OptionItem(optionValue.Value2, "値2"),
+    new Select3OptionItem(optionValue.Value3, "値3")];
 
+    public Select3Options = ko.observableArray(this.Select3OptionList);
 
+    public Select3(value?: optionValue): optionValue {
+        if (value != undefined) {
+
+            var sel: Select3OptionItem = this.Select3OptionList.filter(Select3OptionItem => Select3OptionItem.OriginalValue === value)[0];
+            this.Select3Selected(sel);
+
+            // Findを使ったソースもなぜかエラー
+            // var sel = this.Select3OptionList.find(Selected3OptionItem => Select3OptionItem.OriginalValue === value);
+
+            // Linqを使ったソースはなぜかエラーに
+            // Enumerable.From(this.Select3OptionList);                // this.Select3Options() // 配列だけ別に定義すれば動くか？？
+            /// Enumerable.From(this.Select3OptionList).Where(($) => $.OriginalValue == value);
+            // Enumerable.From(this.Select3OptionList).Where(($) => $.OriginalValue == value).First();
+
+            // Select3OptionsがObservableArrayなので、指定の値をとるのはひと手間かける必要がある。
+            //this.Select3Selected(
+            //    // Valueに引数が設定されていたらSelect3Selectedに値を設定する。
+            //    Enumerable
+            //        .From(this.Select3Options())                 // Select3Optionsのobservableの一覧から
+            //        .Where(($) => $.OriginalValue == value)      // valueがOriginalValue（のenmu）と一致するものを選択し1件目を返す
+            //        .First()
+            //);
+        }
+        // 引数がない場合は、もともと持っているenum値を返却する。
+        return this.Select3Selected().OriginalValue;
+    }
+    public Select3Selected: KnockoutObservable<Select3OptionItem> = ko.observable(this.Select3OptionList[0]);
+    // public Select3Selected: KnockoutObservable<Select3OptionItem> = ko.observable(new Select3OptionItem(optionValue.Value2, "値2"));
+    //public Select3Selected: KnockoutObservable<Select3OptionItem> = ko.observable(
+    //    Enumerable
+    //        .From(this.Select3Options())                 // Select3Optionsのobservableの一覧から
+    //        .Where(($) => $.OriginalValue == optionValue.Value2)      // valueがOriginalValue（のenmu）と一致するものを選択し1件目を返す
+    //        .First());
 }
 
 $().ready(() => {
@@ -113,13 +164,20 @@ $().ready(() => {
     //
     var productItem = ko.observable<Product>(new Product());
 
+
+    // products一覧で、itemをクリックしたときの処理。product型引数のitemを処理にわたし、
+    // productItemにセット。画面の大きさを調整する。
     var clicked = (item: Product) => {
         productItem(item);
         $('html,body').animate({ scrollTop: ($("#productItem").offset().top - $(".navbar-header").height()) }, 'fast');
     };
     var products = ko.observableArray<Product>();
 
+    // obsarvableArrayに登録したpuroductsを、ID=products配下のlinesに紐づける
+    // 画面プロパティTitleに、オブジェクトのプロパティTitleが自動的に紐づくしくみ
     ko.applyBindings({ "lines": products }, $("#products")[0]);
+    // さらに、詳細画面(ID=productItem)にも、productItemを紐づける
+    // 画面プロパティTitleに、オブジェクトのプロパティTitleが自動的に紐づくしくみ
     ko.applyBindings(productItem, $("#productItem")[0]);
 
     $(".openProducts").click(() => {
@@ -204,8 +262,16 @@ $().ready(() => {
             $("#addPageMessageText").append("チェックされた");
         }
 
+        var opV: optionValue  = m.Select3();
+
         var tmpText3 = $("#saveItemMessage").parent().val();
-        $("#addPageMessageText").append(tmpText3);
+        //$("#addPageMessageText").append(tmpText3).append("option3" + selected3Title);
+        // Selected3Selectedに関して、m.Selected3Selected→これはObservable。m.Selected3Selected()でオブジェクト
+        // Selected3()でenum値を取得。
+        $("#addPageMessageText").append(tmpText3)
+            .append("<br />  option3 Title:").append(m.Select3Selected().Title)
+            .append("<br />  option3 Value:").append(m.Select3Selected().Value)
+            .append("<br />  opV:").append(optionValue[opV]);
 
         return false; // おまじない
     });
@@ -215,13 +281,27 @@ $().ready(() => {
         // Bind処理
         m.Text2("ChangeText" + nowTime);
         m.Check2(false);
-        m.Radio2Selected(optionValue[optionValue.Value1]);
-        m.Select2Selected(optionValue[optionValue.Value3]);
+        //m.Radio2Selected(optionValue[optionValue.Value1]);
+        //m.Select2Selected(optionValue[optionValue.Value3]);
+
+        m.Radio2(optionValue.Value1);
+        m.Select2(optionValue.Value3);
+        m.Select3(optionValue.Value2);
+        //m.Select2(optionValue.Value3);
 
         return false;
 　  });
 
     // データバインド
     var m = new SampleModel();
+
+    // m.Select2(optionValue.Value2);
+    // m.Select3(optionValue.Value3);
+
+    // var selected2Option: optionValue = m.Select2();
+    //var selected3Option: optionValue = m.Select3();
+   //  var selected3Title: string = m.Select3Selected().Title;
+   //  m.Radio2(optionValue.Value2);
+
     ko.applyBindings(m, $("body")[0]);
 });

@@ -92,10 +92,15 @@
                     <h2>データバインドの確認</h2>
                     <input id="text2" type="text" data-bind="textInput:Text2" /><br />
                     <input id="check2" type="checkbox" data-bind="checked:Check2" /><br />
-                    Value1 <input name="radio2" type="radio" value="Value1" data-bind="checked:Radio2Selected" /><br />
-                    Value2 <input name="radio2" type="radio" value="Value2" data-bind="checked:Radio2Selected" /><br />
-                    Value3 <input name="radio2" type="radio" value="Value3" data-bind="checked:Radio2Selected" /><br />
-                    <select id="select2" data-bind="options:Select2Options, value:Select2Selected"></select>
+                    Value1 <input name="radio2" type="radio" value="Value1" data-bind="checked:Radio2Selected"/><br />
+                    Value2 <input name="radio2" type="radio" value="Value2" data-bind="checked:Radio2Selected"/><br />
+                    Value3 <input name="radio2" type="radio" value="Value3" data-bind="checked:Radio2Selected"/><br />
+                    Select2
+                    <!-- <select id="select2" data-bind="options:Select2Options, value:Select2Selected"></select><br />-->
+                    <select id="select2" data-bind="options:Select2Options, value:Select2Selected"></select><br />
+                    Select3 <!--<select id="select3" data-bind="options:Select3Options, value:Select3Selected, optionsText:'Title'"></select>-->
+                    <select id="select3" data-bind="options:Select3Options, value:Select3Selected, optionsText:'Title'"></select>
+
                     <div id="text2disp"></div>
                 </div>
                 <div class="col-md-4">

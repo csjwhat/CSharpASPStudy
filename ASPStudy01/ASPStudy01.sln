@@ -11,6 +11,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BasicSpa.database", "BasicS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicSpa", "BasicSpa\BasicSpa.csproj", "{4E51DACA-5176-477A-A89D-CF7546BF32A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicSpa.Data", "BasicSpa.data\BasicSpa.Data.csproj", "{70256E11-1F56-4F72-B9C7-7A28A76C5835}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{4E51DACA-5176-477A-A89D-CF7546BF32A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E51DACA-5176-477A-A89D-CF7546BF32A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E51DACA-5176-477A-A89D-CF7546BF32A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70256E11-1F56-4F72-B9C7-7A28A76C5835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70256E11-1F56-4F72-B9C7-7A28A76C5835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70256E11-1F56-4F72-B9C7-7A28A76C5835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70256E11-1F56-4F72-B9C7-7A28A76C5835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
