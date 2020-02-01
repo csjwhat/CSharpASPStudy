@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using BasicSpa.Data.ViewModels;
 using BasicSpa.data;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+
 
 namespace BasicSpa.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : ApiController
     {
         // GET: Products
         [Route("api/Products")]
@@ -22,12 +26,6 @@ namespace BasicSpa.Controllers
 
                 return results;
             }
-        }
-
-
-        public ActionResult Index()
-        {
-            return View();
         }
     }
 }
