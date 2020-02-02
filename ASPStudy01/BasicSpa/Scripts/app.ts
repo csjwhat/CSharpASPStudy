@@ -216,11 +216,32 @@ $().ready(() => {
     $("#newItem .saveButton").click(() => {
         var item = newItem();
         // TODO: ここでWeb API に newItem() を渡してDBに保存します。
-        item.Clicked = clicked;
-        products.push(item);
-        savedTitle(item.Title);
-        newItem(new Product());
-        return false;
+        //item.Clicked = clicked;
+        //products.push(item);
+        //savedTitle(item.Title);
+        //newItem(new Product());
+
+        var s: JQueryAjaxSettings = {
+            type: "POST",
+            url: "api/SaveProduct",
+            dataType: "json",
+            data: item,
+            timeout: 10000,
+            success: (result) => {
+                if (result.success) {
+                    // 保存に成功したとき、メッセージを表示する。
+                    savedTitle(item.Title);
+                    newItem(new Product());
+                } else {
+                    alert("error");
+                }
+            },
+            error: (result) => {
+                alert("error");
+            }
+        };
+        $.ajax(s);
+         return false;
     });
 
     $(".openNewItem").click(() => {

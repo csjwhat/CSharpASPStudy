@@ -68,6 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BasicModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ProductExtensions.cs" />
     <Compile Include="Products.cs">
       <DependentUpon>BasicModel.tt</DependentUpon>
     </Compile>
