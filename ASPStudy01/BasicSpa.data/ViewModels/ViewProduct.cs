@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace BasicSpa.Data.ViewModels
 
         public int Id { get; set; }
 
-        // [Required]
+        [Required]
         public string Title { get; set; }
         public string ProductUrl { get; set; }
         public string DownloadUrl { get; set; }

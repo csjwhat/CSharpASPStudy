@@ -1,6 +1,7 @@
-﻿class Product {
+﻿///<reference path="typings/knockout.validation/knockout.validation.d.ts" />
+class Product {
     Id: number = 0;
-    Title: string = null;
+    Title = ko.observable("").extend({ required: true });
     Description: string = null;
     Publisher: string = null;
     Price: string = null;

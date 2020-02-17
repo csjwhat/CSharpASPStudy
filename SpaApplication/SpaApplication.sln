@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaApplication", "SpaApplication\SpaApplication.csproj", "{EEBEBA16-5FDE-48AC-85AF-BC477A99289A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloSpa", "HelloSpa\HelloSpa.csproj", "{A74E5637-5095-41B5-8F3D-CD95D43D9F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTest1HelloSpa", "MyTest1HelloSpa\MyTest1HelloSpa.csproj", "{82A4124A-15F6-473F-9D49-693076AEC28B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EEBEBA16-5FDE-48AC-85AF-BC477A99289A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEBEBA16-5FDE-48AC-85AF-BC477A99289A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEBEBA16-5FDE-48AC-85AF-BC477A99289A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEBEBA16-5FDE-48AC-85AF-BC477A99289A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A74E5637-5095-41B5-8F3D-CD95D43D9F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A74E5637-5095-41B5-8F3D-CD95D43D9F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A74E5637-5095-41B5-8F3D-CD95D43D9F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A74E5637-5095-41B5-8F3D-CD95D43D9F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A4124A-15F6-473F-9D49-693076AEC28B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A4124A-15F6-473F-9D49-693076AEC28B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A4124A-15F6-473F-9D49-693076AEC28B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A4124A-15F6-473F-9D49-693076AEC28B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

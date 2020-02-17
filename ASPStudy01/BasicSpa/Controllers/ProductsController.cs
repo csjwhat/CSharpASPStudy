@@ -32,14 +32,13 @@ namespace BasicSpa.Controllers
         [Route("api/SaveProduct")]
         public Models.SaveResult SaveProduct(ViewProduct product)
         {
+            if (ModelState.IsValid == false) return new Models.SaveResult { success = false };
+
             using (var db = new Entities2())
             {
                 var target = new Products();
                 db.Products.Add(target);
-
-                //ViewProduct.SetProperties(product, target);
-                target.SetProperties(product);
-
+                target.SetProperties(product); // ビューモデルからモデルに値を設定
                 db.SaveChanges();
             }
             return new Models.SaveResult { success = true };
